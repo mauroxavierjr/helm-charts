@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: giropopssenhas
+  name: giropopssenhas
+spec:
+  replicas: {{ .Values.giropopssenhas.replicas }}
+  selector:
+    matchLabels:
+      app: giropopssenhas
+  template:
+    metadata:
+      labels:
+        app: giropopssenhas
+    spec:
+      containers:
+      - image: {{ .Values.giropopssenhas.image }}
+        name: giropopssenhas
+        ports:
+        - containerPort: {{ .Values.giropopssenhas.service.port }}
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: {{ .Values.giropopssenhas.resources.limits.memory }}
+            cpu: {{ .Values.giropopssenhas.resources.limits.cpu }}
+          requests:
+            memory: {{ .Values.giropopssenhas.resources.requests.memory }}
+            cpu: {{ .Values.giropopssenhas.resources.requests.cpu }}

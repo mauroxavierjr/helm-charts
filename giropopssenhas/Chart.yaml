@@ -1,0 +1,7 @@
+apiVersion: v2
+name: giropopssenhas
+description: Esse é o chart do giropopssenhas, utilizados nos laboratórios de Helm.
+version: 0.1.0
+appVersion: 0.1.0
+sources:
+  - https://github.com/badtuxx/giropopssenhas

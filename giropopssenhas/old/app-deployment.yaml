@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: giropopssenhas
-  name: giropopssenhas
+    app: {{ .Values.giropopssenhas.labels.app }}
+  name: {{ .Values.giropopssenhas.name }}
 spec:
   replicas: {{ .Values.giropopssenhas.replicas }}
   selector:
     matchLabels:
-      app: giropopssenhas
+      app: {{ .Values.giropopssenhas.labels.app }}
   template:
     metadata:
       labels:
-        app: giropopssenhas
+        app: {{ .Values.giropopssenhas.labels.app }}
     spec:
       containers:
       - image: {{ .Values.giropopssenhas.image }}
-        name: giropopssenhas
+        name: {{ .Values.giropopssenhas.name }}
         ports:
         - containerPort: {{ .Values.giropopssenhas.service.port }}
         imagePullPolicy: Always

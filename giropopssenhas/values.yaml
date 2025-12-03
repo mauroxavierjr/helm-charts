@@ -1,42 +1,70 @@
-giropopssenhas:
-  name: "giropopssenhas"
-  image: "linuxtips/giropops-senhas:1.0"
-  replicas: "3"
-  port: 5000
-  labels:
-    app: "giropopssenhas"
-    env: "labs"
-    live: "true"
-  service:
-    type: "NodePort"
-    port: 5000
-    targetPort: 5000
-    name: "giropopssenhasport"
-  resources:
-    requests:
-      memory: "128Mi"
-      cpu: "250m"
-    limits:
-      memory: "256Mi"
-      cpu: "500m"
+deployments:
 
-redis:
-  image: "redis"
-  replicas: 1
-  port: 6379
-  labels:
-    app: "redis"
-    env: "labs"
-    live: "true"
-  service:
-    type: "ClusterIP"
+  giropopssenhas:
+    name: "giropopssenhas"
+    image: "linuxtips/giropops-senhas:1.0"
+    replicas: "3"
+    ports: 
+      - port: 5000
+        targetPort: 5000
+        name: "giropopssenhasport"
+        serviceType: "NodePort"
+        NodePort: 32500
+      - port: 8088
+        targetPort: 8088
+        name: "giropopssenhasmetrics"
+        serviceType: "ClusterIP"
+    labels:
+      app: "giropopssenhas"
+      env: "labs"
+      live: "true"
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "250m"
+      limits:
+        memory: "256Mi"
+        cpu: "500m"
+
+  redis:
+    image: "redis"
+    replicas: 1
     port: 6379
-    targetPort: 6379
-    name: "redis-port"
-  resources:
-    requests:
-      memory: "128Mi"
-      cpu: "250m"
-    limits:
-      memory: "256Mi"
-      cpu: "500m"
+    labels:
+      app: "redis"
+      env: "labs"
+      live: "true"
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "250m"
+      limits:
+        memory: "256Mi"
+        cpu: "500m"
+
+services:
+  giropopssenhas:
+    ports: 
+      - port: 5000
+        targetPort: 5000
+        name: "app"
+        serviceType: "NodePort"
+        NodePort: 32500
+      - port: 8088
+        targetPort: 8088
+        name: "metrics"
+        serviceType: "ClusterIP"
+    labels:
+      app: "giropopssenhas"
+      env: "labs"
+      live: "true"
+  redis:
+    ports: 
+      - port: 6379
+        targetPort: 6379
+        name: "app"
+        serviceType: "ClusterIP"
+    labels:
+      app: "redis"
+      env: "labs"
+      live: "true"

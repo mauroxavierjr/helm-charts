@@ -62,7 +62,7 @@ services:
     ports: 
       - port: 6379
         targetPort: 6379
-        name: "app"
+        name: "service"
         serviceType: "ClusterIP"
     labels:
       app: "redis"

@@ -3,7 +3,7 @@ entries:
   giropopssenhas:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2025-12-04T11:03:39.959037507-03:00"
+    created: "2025-12-04T11:08:59.624696334-03:00"
     description: Esse é o chart do giropopssenhas, utilizados nos laboratórios de
       Helm.
     digest: 78502d45ad457cc11ac1de852fc05fe13802a9d1e3d7f0c98d53a4ed35526ff9
@@ -11,6 +11,6 @@ entries:
     sources:
     - https://github.com/badtuxx/giropopssenhas
     urls:
-    - https://github.com/mauroxavierjr/helm-charts.git/giropopssenhas-0.1.0.tgz
+    - https://mauroxavierjr.github.io/helm-charts/giropopssenhas-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-04T11:03:39.946333084-03:00"
+generated: "2025-12-04T11:08:59.618782785-03:00"
